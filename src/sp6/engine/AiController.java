@@ -1,5 +1,5 @@
 package sp6.engine;
 
-public class AiController {
+public interface AiController extends Component {
 
 }

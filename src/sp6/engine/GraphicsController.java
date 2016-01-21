@@ -1,5 +1,5 @@
 package sp6.engine;
 
-public class GraphicsController {
+public interface GraphicsController extends Component {
 
 }

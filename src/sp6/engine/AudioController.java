@@ -1,5 +1,5 @@
 package sp6.engine;
 
-public class AudioController {
+public interface AudioController extends Component {
 
 }

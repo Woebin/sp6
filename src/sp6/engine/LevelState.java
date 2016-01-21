@@ -1,5 +1,5 @@
 package sp6.engine;
 
-public class LevelState {
+public interface LevelState extends State {
 
 }

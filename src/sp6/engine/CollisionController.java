@@ -1,5 +1,5 @@
 package sp6.engine;
 
-public class CollisionController {
+public interface CollisionController extends Component {
 
 }

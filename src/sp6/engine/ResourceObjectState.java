@@ -1,5 +1,5 @@
 package sp6.engine;
 
-public class ResourceObjectState {
+public interface ResourceObjectState extends State {
 
 }

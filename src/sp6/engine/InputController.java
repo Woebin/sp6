@@ -1,5 +1,5 @@
 package sp6.engine;
 
-public class InputController {
+public interface InputController extends Component {
 
 }

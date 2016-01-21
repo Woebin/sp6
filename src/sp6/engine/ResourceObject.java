@@ -1,5 +1,9 @@
 package sp6.engine;
-
-public class ResourceObjects {
+/**
+ * 
+ * Tänkte mig spontant saker man kan kollidera med och ev. interager med. Enklare än gameobject
+ *
+ */
+public class ResourceObject {
 
 }

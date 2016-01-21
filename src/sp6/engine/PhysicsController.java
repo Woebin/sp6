@@ -1,5 +1,5 @@
 package sp6.engine;
 
-public class PhysicsController {
+public interface PhysicsController extends Component {
 
 }
