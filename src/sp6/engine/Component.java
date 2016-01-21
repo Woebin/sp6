@@ -1,5 +1,5 @@
 package sp6.engine;
 
-public class Component {
+public interface Component {
 
 }
