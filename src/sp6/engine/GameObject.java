@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 
- * Den mest avancerade. Kan ha fysik, kollision, animering etc. Rï¿½rlig eller statisk.
+ * Den mest avancerade. Kan ha fysik, kollision, animering etc. Rörlig eller statisk.
  *
  */
 public class GameObject extends BaseObject implements GraphicsControllable, PhysicsControllable, CollisionControllable {

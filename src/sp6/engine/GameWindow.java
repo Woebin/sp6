@@ -21,6 +21,9 @@ public class GameWindow extends javax.swing.JFrame {
 		this.mFile.add(this.mNewGame);
 		this.mFile.add(this.mOptions);
 		this.mFile.add(this.mExit);
+		this.mNewGame.addActionListener(new MenuListener());
+		this.mOptions.addActionListener(new MenuListener());
+		this.mExit.addActionListener(new MenuListener());
 		
 		this.gameDisplay = new JPanel();
 		this.gameDisplay.setLayout(null);
@@ -37,11 +40,12 @@ public class GameWindow extends javax.swing.JFrame {
 			if(ae.getSource() == GameWindow.this.mNewGame){
 				// Start a new game.
 			}
-			
+			if(ae.getSource() == GameWindow.this.mOptions){
+				// Show options window.
+			}
+			if(ae.getSource() == GameWindow.this.mExit){
+				System.exit(0);
+			}			
 		}
-	}
-	
-	public static void main(String[] args){
-		new GameWindow();
 	}
 }
