@@ -1,9 +1,17 @@
 package sp6.engine;
+
+import sp6.engine.controller.Component;
+
+import java.util.List;
+
 /**
  * 
- * Rörlig eller statiskt ljudobjekt. Vet inte riktigt vad det skulle kunna vara just nu :)
+ * Rï¿½rlig eller statiskt ljudobjekt. Vet inte riktigt vad det skulle kunna vara just nu :)
  *
  */
-public class AcousticObject {
+public class AcousticObject extends BaseObject {
 
+    public AcousticObject(List<Component> components) {
+        super(components);
+    }
 }

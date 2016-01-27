@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+	Test game: micro variant of Gradius.
+	1 level
+	1 scene
+	1 player character
+	1 bullet
+	1 npc
+	1 npc ai
+	1 volcano
+	1 volcano rumble sound
+	1 background
+	1 terrain
+
+	Attributes of node is mandatory!
+-->
+<game name="Gradius sporadius">
+	<splash></splash>
+	<intro></intro>
+	<mainmenu></mainmenu>
+	<outro></outro>
+	<level name="1" class="level1.Level">
+		<intro></intro>
+		<outro></outro>
+		<levelmenu></levelmenu>
+		<scene name="flying" class="level1.FlyingScene">
+			<osd></osd>
+			<objects>
+				<gameobject name="playercharacter" class="gameobjects.PlayerCharacter">
+					<coordinate>
+						<x></x>
+						<y></y>
+					</coordinate>
+					<physics>
+						<gravity>
+							<!-- 9.8 is normal speed -->
+							<speed>9.8</speed>
+							<!-- Gravity type can be linear or exponential where the latter is more natural -->
+							<type>linear</type>
+						</gravity>
+						<forcetransmittance></forcetransmittance>
+					</physics>
+					<movement name="" class="Keymap"> 
+						<keymap>
+							<key name="w">
+								up
+							</key>
+							<key name="s">
+								down
+							</key>
+							<key name="a">
+								left
+							</key>
+							<key name="d">
+								right
+							</key>
+							<key name="space">
+								fire
+							</key>
+							<key name="leftshift">
+								turbo
+							</key>
+						</keymap>
+					</movement>
+					<spritesheet name="playercharacter">
+						<!-- 
+							1 spritesheet / gameobject. Can contain: animation, 
+
+
+							One animation can span multipl rows. Ex: nr rows: 4, nr cols: 8, a animation that starts at row: 0, col:0 and ends at: row: 2, col: 4, would have an 	animation of 20 individual sprites. 
+							Each named animation can overlap span with an other animation. Ex: Animation name="walk" = row:0, col:0 -> row: 0, col:4. Animation name="jump" = row:0, col:4 -> row: 0, col:8.
+							Each animation needs an unique name in each named spritesheet.
+						-->
+						<tile>
+							<width>32</width>
+							<height>32</height>
+						</tile>
+						<file>
+							player_character_spritesheet.png
+						</file>
+						<animation name="fly">
+							<level>
+								50
+							</level>
+							<start>
+								<row></row>
+								<col></col>
+							</start>
+							<end>
+								<row></row>
+								<col></col>
+							</end>
+						</animation>
+						<animation name="idle">
+							<level>
+								50
+							</level>
+							<start>
+								<row></row>
+								<col></col>
+							</start>
+							<end>
+								<row></row>
+								<col></col>
+							</end>
+						</animation>
+						<animation name="fire">
+							<level>
+								50
+							</level>
+							<start>
+								<row></row>
+								<col></col>
+							</start>
+							<end>
+								<row></row>
+								<col></col>
+							</end>
+						</animation>
+					</spritesheet>
+				</gameobject>
+				<!-- Implement child-parent relation?! Bullet as child of PlayerCharacter -->
+				<gameobject name="bullet" class="gameobjects.Bullet">
+					<coordinate>
+						<x></x>
+						<y></y>
+					</coordinate>
+					<physics>
+						<velocity>200</velocity>
+						<acceleration>0</acceleration>
+						<gravity>
+							<speed>0</speed>
+						</gravity>
+						<forcetransmittance></forcetransmittance>
+					</physics>
+					<spritesheet name="bullets">
+						<tile>
+							<width>32</width>
+							<height>32</height>
+						</tile>
+						<file>
+							bullets_spritesheet.png
+						</file>
+						<animation name="leavingbarrel">
+							<level>
+								100
+							</level>
+							<start>
+								<row>0</row>
+								<col>0</col>
+							</start>
+							<end>
+								<row>0</row>
+								<col>8</col>
+							</end>
+						</animation>
+						<animation name="flying">
+							<level>
+								100
+							</level>
+							<start>
+								<row>1</row>
+								<col>0</col>
+							</start>
+							<end>
+								<row>1</row>
+								<col>8</col>
+							</end>
+						</animation>
+						<!-- not fond goat but hit target :)) -->
+						<animation name="hittarget">
+							<level>
+								100
+							</level>
+							<start>
+								<row>2</row>
+								<col>0</col>
+							</start>
+							<end>
+								<row>2</row>
+								<col>8</col>
+							</end>
+						</animation>
+					</spritesheet>
+				</gameobject>
+				<gameobject name="defaultnpc" class="gameobjects.DefaultNpc">
+					<coordinate>
+						<x></x>
+						<y></y>
+					</coordinate>
+					<physics>
+						<velocity>
+							32
+						</velocity>
+						<acceleration>
+							2
+						</acceleration>
+						<gravity>
+							<!-- 9.8 is normal speed -->
+							<speed>9.8</speed>
+							<!-- Gravity type can be linear or exponential where the latter is more natural -->
+							<type>linear</type>
+						</gravity>
+						<forcetransmittance></forcetransmittance>
+					</physics>
+					<spritesheet name="npc">
+						<tile>
+							<width>32</width>
+							<height>32</height>
+						</tile>
+						<file>
+							npc_spritesheet.png
+						</file>
+						<animation name="flyaround">
+							<level>
+								50
+							</level>
+							<start>
+								<row></row>
+								<col></col>
+							</start>
+							<end>
+								<row></row>
+								<col></col>
+							</end>
+						</animation>
+						<animation name="hunt">
+							<level>
+								50
+							</level>
+							<start>
+								<row></row>
+								<col></col>
+							</start>
+							<end>
+								<row></row>
+								<col></col>
+							</end>
+						</animation>
+					</spritesheet>
+					<ai name="npcai" class="NpcAI">
+						<!-- 0 means infinite, seeradius > 0 is in pixels? (hmm resoution and stuff....) -->
+						<seeradius>
+							40
+						</seeradius>
+					</ai>
+				</gameobject>
+				<gameobject name="volcano" class="gameobjects.Volcano">
+					<coordinate>
+						<x></x>
+						<y></y>
+					</coordinate>
+					<spritesheet name="volcano">
+						<tile>
+							<width>256</width>
+							<height>256</height>
+						</tile>
+						<file>
+							volcano_spritesheet.png
+						</file>
+						<animation name="rumble">
+							<level>
+								100
+							</level>
+							<start>
+								<row>0</row>
+								<col>0</col>
+							</start>
+							<end>
+								<row>0</row>
+								<col>8</col>
+							</end>
+						</animation>
+					</spritesheet>
+				</gameobject>
+				<acusticobject>
+					<coordinate>
+						<x></x>
+						<y></y>
+					</coordinate>
+					<sound>
+						<file>rumble.mp3</file>
+						<!--
+							playmode can be:
+								once - play once 
+								loop - loop sound
+								ntimes - play n times and then stop
+						-->	
+						<playmode>loop</playmode>
+					</sound>
+					<!-- 
+						Trigger can be:
+							radius - in a radius of this object 
+							object in coordinate: x, y, cx, cy -  
+							event - 
+					-->
+					<trigger>
+						<!-- 
+							name of the objects to trigger
+						-->
+						<objects>
+							<object>playercharacter</object>
+						</objects>
+						<radius>
+							<x></x>
+							<y></y>
+							<cx></cx>
+							<cy></cy>
+						</radius>	
+					</trigger>					
+				</acusticobject>
+				<resourceobject name="background">
+					<!-- http://doc.mapeditor.org/reference/support-for-tmx-maps/ -->
+					<!-- https://github.com/bjorn/tiled/tree/master/util/java/libtiled-java -->
+					<tilemap>
+						<coordinate>
+							<x>0</x>
+							<y>0</y>
+						</coordinate>
+						<file>
+							background_tile_map.tmx
+						</file>
+					</tilemap>												
+				</resourceobject>
+				<resourceobject name="terrain">
+					<tilemap>
+						<coordinate>
+							<x>0</x>
+							<y>0</y>
+						</coordinate>
+						<file>
+							terrain_tile_map.tmx
+						</file>
+					</tilemap>												
+				</resourceobject>
+			</objects>
+		</scene>
+	</level>
+</game>
+
+
+<!--
+	<gamewindow></gamewindow>
+	<menu></menu>
+	<menuelement></menuelement>
+	<loader></loader>
+	<gameworld></gameworld>
+	<level></level>
+	<scene></scene>
+	<acusticscene></acusticscene>
+	<osd></osd>
+	<gameobject></gameobject>
+	<acusticobject></acusticobject>
+	<resourceobject></resourceobject>
+	<physicsengine></physicsengine>
+	<audioengine></audioengine>
+	<graphicsengine></graphicsengine>
+-->
+
+
