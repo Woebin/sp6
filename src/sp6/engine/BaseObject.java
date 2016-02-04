@@ -6,8 +6,8 @@ import java.util.List;
 
 /**
  * 
- * Basobjektet fÃ¶r alla interagerbara objekt i en level. Frï¿½gan ï¿½r om det behï¿½vs nï¿½gon uppdelning? Sï¿½tter man
- * egenskaperna pÃ¥ ett object vart efter sï¿½ skulle man kunna klara sig bara med ett BaseObject
+ * Basobjektet för alla interagerbara objekt i en level. Frågan är om det behövs någon uppdelning? Sätter man
+ * egenskaperna på ett object vart efter så skulle man kunna klara sig bara med ett BaseObject
  *
  */
 public abstract class BaseObject {

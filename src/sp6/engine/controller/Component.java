@@ -4,8 +4,8 @@ import sp6.engine.BaseObject;
 
 /**
  * 
- * En tanke ï¿½r att ha egenskaper i form av komponenter som ï¿½pluggasï¿½ in till olika objekt fï¿½r att fï¿½rrï¿½ndra deras 
- * beteende. Behï¿½ver ett objekt fysiksimulering sï¿½ pluggas en fysikkomponent pï¿½ den.
+ * En tanke är att ha egenskaper i form av komponenter som pluggas in till olika objekt för att förändra deras 
+ * beteende. Behöver ett objekt fysiksimulering så pluggas en fysikkomponent på den.
  *
  */
 public abstract class Component {

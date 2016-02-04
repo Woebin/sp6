@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 /**
  * 
- * Laddar alla resurser, info, logik etc frï¿½n fil in till motorn
+ * Laddar alla resurser, info, logik etc från fil in till motorn
  *
  */
 public class Loader {

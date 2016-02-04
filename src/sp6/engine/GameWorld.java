@@ -4,10 +4,8 @@ import sp6.engine.controller.*;
 
 import java.util.List;
 
-/**
- * 
- * 
- * Har loopen. Har information om hela spelets tillstï¿½nd. Hanterar levels
+/** 
+ * Har loopen. Har information om hela spelets tillstånd. Hanterar levels
  *
  */
 public class GameWorld {
@@ -64,7 +62,7 @@ public class GameWorld {
                 fps = 0;
             }
 
-            // @TODO maby put this in a separate thread?!
+            // @TODO maybe put this in a separate thread?!
             update(Component.Prio.HIGH, deltaTime);
 
             update(Component.Prio.MEDIUM, deltaTime);
