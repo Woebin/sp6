@@ -1,13 +1,16 @@
-package sp6.engine;
+package sp6.engine.other;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import sp6.engine.GameObject;
 import sp6.engine.controller.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +85,6 @@ public class Loader {
         private static final String ROW_NODE = "row";
         private static final String COL_NODE = "col";
         private static final String END_NODE = "end";
-        private static final String ACUSTICS_OBJECT_NODE = "acusticsobject";
         private static final String SOUND_NODE = "sound";
         private static final String PLAY_MODE_NODE = "sound";
         private static final String TRIGGER_NODE = "trigger";
@@ -126,7 +128,6 @@ public class Loader {
             components.add(new GraphicsController());
             components.add(new PhysicsController());
             components.add(new InputController());
-            components.add(new CollisionController());
 
             baseObjects.add(new GameObject(components));
             return baseObjects;

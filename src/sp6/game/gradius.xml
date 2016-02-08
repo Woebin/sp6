@@ -8,7 +8,6 @@
 	1 npc
 	1 npc ai
 	1 volcano
-	1 volcano rumble sound
 	1 background
 	1 terrain
 
@@ -273,42 +272,6 @@
 						</animation>
 					</spritesheet>
 				</gameobject>
-				<acusticobject>
-					<coordinate>
-						<x></x>
-						<y></y>
-					</coordinate>
-					<sound>
-						<file>rumble.mp3</file>
-						<!--
-							playmode can be:
-								once - play once 
-								loop - loop sound
-								ntimes - play n times and then stop
-						-->	
-						<playmode>loop</playmode>
-					</sound>
-					<!-- 
-						Trigger can be:
-							radius - in a radius of this object 
-							object in coordinate: x, y, cx, cy -  
-							event - 
-					-->
-					<trigger>
-						<!-- 
-							name of the objects to trigger
-						-->
-						<objects>
-							<object>playercharacter</object>
-						</objects>
-						<radius>
-							<x></x>
-							<y></y>
-							<cx></cx>
-							<cy></cy>
-						</radius>	
-					</trigger>					
-				</acusticobject>
 				<resourceobject name="background">
 					<!-- http://doc.mapeditor.org/reference/support-for-tmx-maps/ -->
 					<!-- https://github.com/bjorn/tiled/tree/master/util/java/libtiled-java -->

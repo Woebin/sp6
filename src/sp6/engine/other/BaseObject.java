@@ -1,4 +1,4 @@
-package sp6.engine;
+package sp6.engine.other;
 
 import sp6.engine.controller.Component;
 

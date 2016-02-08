@@ -1,6 +1,7 @@
 package sp6.engine.controller;
 
-import sp6.engine.BaseObject;
+import sp6.engine.controllables.PhysicsControllable;
+import sp6.engine.other.BaseObject;
 
 public class PhysicsController extends Component {
 

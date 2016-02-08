@@ -1,4 +1,4 @@
-package sp6.engine;
+package sp6.engine.other;
 /**
  * 
  * Inte riktigt säker på den här. En tanke var att man skulle kunna ha multipla scener i en level: scener och akustiska 

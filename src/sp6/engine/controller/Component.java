@@ -1,6 +1,6 @@
 package sp6.engine.controller;
 
-import sp6.engine.BaseObject;
+import sp6.engine.other.BaseObject;
 
 /**
  * 

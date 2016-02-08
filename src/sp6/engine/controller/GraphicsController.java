@@ -1,22 +1,24 @@
 package sp6.engine.controller;
 
 
-import sp6.engine.BaseObject;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
 
-public class GraphicsController extends Component {
-    public void update(GraphicsControllable graphicsControllable, double deltaTime) {
+import sp6.engine.GameEngine;
+import sp6.engine.GameObject;
+import sp6.engine.controllables.GraphicsControllable;
 
-    }
+public class GraphicsController extends AbstractController {
 
-    @Override
-    public Prio getPrio() {
-        return Component.Prio.HIGH;
-    }
+	public GraphicsController(GameEngine engine) {
+		super(engine);
+	}
 
-    @Override
-    protected void update_(BaseObject baseObject, double deltaTime) {
-
-        GraphicsControllable graphicsControllable = (GraphicsControllable) baseObject;
-        System.out.println(graphicsControllable.getTestString());
-    }
+	public <O extends GameObject & GraphicsControllable> void update(ArrayList<O> g, Graphics2D graphics){
+		for (O object : g) {
+			// System.out.println("Drawing " + object.getPosX() + " " + object.getPosY() + " " + object.getWidth() + " " + object.getHeight());
+			graphics.drawImage(object.getSprite(), object.getPosX(), object.getPosY(), 
+					object.getWidth(), object.getHeight(), null);
+		}
+	}
 }

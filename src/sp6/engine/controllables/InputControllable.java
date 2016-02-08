@@ -1,4 +1,4 @@
-package sp6.engine.controller;
+package sp6.engine.controllables;
 
 /**
  *

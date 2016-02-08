@@ -1,4 +1,4 @@
-package sp6.engine;
+package sp6.engine.other;
 
 public class MenuElement {
 

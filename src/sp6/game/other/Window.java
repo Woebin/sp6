@@ -1,4 +1,4 @@
-package sp6.game;
+package sp6.game.other;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -25,7 +25,6 @@ public class Window extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		// setBackground(Color.BLACK);
 		addKeyListener(new KeyAdapterListener(this));
 		createBufferStrategy(2);
       	bufferStrategy = getBufferStrategy();

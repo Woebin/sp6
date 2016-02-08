@@ -1,4 +1,4 @@
-package sp6.game;
+package sp6.game.other;
 
 public interface AnimationMovement {
 	// Implement vector

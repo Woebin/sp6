@@ -1,4 +1,4 @@
-package sp6.game;
+package sp6.game.other;
 
 public class Coordinate {
 	private final int x;

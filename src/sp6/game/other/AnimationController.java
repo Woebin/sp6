@@ -1,4 +1,4 @@
-package sp6.game;
+package sp6.game.other;
 
 import java.awt.image.*;
 import java.awt.*;
