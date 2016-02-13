@@ -12,14 +12,20 @@ import sp6.engine.controllables.GraphicsControllable;
  * Varje komplett spelbar level. Innehåller baseobject. Har en egen osd: för liv-indikator etc...
  *
  */
-public class GameWorld {
+public class Level {
 	public List<GameObject> objects;
-	public HUD worldHUD;
+	public HUD levelHUD;
 	
-	public GameWorld(){
+	/**
+	 * Constructor.
+	 */
+	public Level(){
 		this.objects = new ArrayList<GameObject>();
 	}
-	
+	 /**
+	  * Adds game objects to level.
+	  * @param o
+	  */
 	public void addGameObject(GameObject o){
 		this.objects.add(o);
 	}

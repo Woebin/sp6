@@ -101,7 +101,7 @@ public class AnimationController {
 		private int imgIdxPlayOnce;
 
 		public Animation(String name, BufferedImage bufferedImage, int xGrid, int yGrid, int width, int height, int count, int fps) {
-			this. bufferedImage = bufferedImage;
+			this.bufferedImage = bufferedImage;
 			this.xGrid = xGrid;
 			this.yGrid = yGrid;
 			this.width = width;

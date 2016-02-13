@@ -25,13 +25,13 @@ public class GameEngine {
 	private String windowTitle;
 	
     private boolean gameLoopRun = false;
-    private GameWorld currentWorld;
+    private Level currentWorld;
     private BufferStrategy bufferStrategy;
     private GraphicsController graphicsController;
     private PhysicsController physicsController;
     private AudioController audioController;
     
-    public void attachWorld(GameWorld world) {
+    public void attachWorld(Level world) {
     	if (this.currentWorld != null) {
     		this.detachWorld();
     	}
