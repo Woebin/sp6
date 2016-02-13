@@ -30,6 +30,11 @@ public class InputController extends Component {
 		return i;
 	}
 
+	/**
+	 * Keypress listener. Currently returns a value for each key, the effects of which can be specified in the game.
+	 * @param event
+	 * @return
+	 */
 	public int keyReleased(KeyEvent event) {
 		int i = 0;
 		switch (event.getKeyCode()) {
