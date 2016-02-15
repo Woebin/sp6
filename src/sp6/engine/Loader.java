@@ -18,9 +18,7 @@ import java.util.*;
 import java.util.prefs.BackingStoreException;
 
 /**
- * 
- * Laddar alla resurser, info, logik etc fr�n fil in till motorn
- *
+ * Loads all resources from XML file into engine.
  */
 public class Loader {
     private static final String PROPERTIES_FILE = "sp6.settings";
@@ -138,6 +136,11 @@ public class Loader {
             return gameWindow;
         }
 
+        /**
+         * Adds object to object list for its Z-level, object list is within map with Z-level as key.
+         * @param baseObjectMap
+         * @param baseObject
+         */
         private void addBaseObjectMap(SortedMap<Integer, List<BaseObject>> baseObjectMap, BaseObject baseObject) {
             List<BaseObject> baseObjects = baseObjectMap.get(baseObject.getZOrder());
 

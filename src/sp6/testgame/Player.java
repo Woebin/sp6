@@ -48,6 +48,9 @@ public class Player extends BaseObject {
 //        rectangle
     }
 
+    /**
+     * Overrides InputController and controls player position based on input.
+     */
     @Override
     public void inputUpdate(Set<Integer> keyCodes) {
         dx = 0;

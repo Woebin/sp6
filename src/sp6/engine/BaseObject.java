@@ -8,10 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 
- * Basobjektet f�r alla interagerbara objekt i en level. Fr�gan �r om det beh�vs n�gon uppdelning? S�tter man
- * egenskaperna p� ett object vart efter s� skulle man kunna klara sig bara med ett BaseObject
- *
+ * Class for all game objects (characters, backgrounds, projectiles etc - everything on screen). 
+ * Should probably be renamed to GameObject really, name is a relic of prior design.
  */
 public abstract class BaseObject implements Comparable<BaseObject>, // Z-order
                                             AnimationControllable,
@@ -25,11 +23,21 @@ public abstract class BaseObject implements Comparable<BaseObject>, // Z-order
     protected boolean active = true;
     protected Integer zOrder = 0;
 
+    /**
+     * Constructor takes a list of components, components are controllers (why is the class not called "Controller" instead?
+     * I dunno.
+     * @param components
+     */
     public BaseObject(List<Component> components) {
         this.components = components;
         rectangle = new Rectangle(-1, -1, 0, 0);
     }
 
+    /**
+     * Call update function from each controller associated with object.
+     * @param baseObjects
+     * @param deltaTime
+     */
     public void update(List<BaseObject> baseObjects, double deltaTime) {
         for (Component component : components) {
             component.update(this, baseObjects, deltaTime);
@@ -42,10 +50,18 @@ public abstract class BaseObject implements Comparable<BaseObject>, // Z-order
         }
     }
 
+    /**
+     * Flag determining if object is active; if not, it's not drawn.
+     * @return
+     */
     public boolean isActive() {
         return active;
     }
 
+    /**
+     * Get Z-level, i.e. which "layer" the object is on. For drawing purposes and possibly collision too.
+     * @return
+     */
     public Integer getZOrder() {
         return zOrder;
     }
