@@ -1,4 +1,4 @@
-package spritesheet.animation;
+package sp6.game.spritesheet.animation;
 
 
 

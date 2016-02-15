@@ -1,8 +1,8 @@
-package spritesheet;
+package sp6.game.spritesheet;
 
 
 
-import spritesheet.animation.*;
+import sp6.game.spritesheet.animation.*;
 
 
 
