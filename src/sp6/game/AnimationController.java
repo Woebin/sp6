@@ -36,6 +36,9 @@ public class AnimationController {
     	animations.put("alien1", new Animation("alien1", spriteSheet, 24, 24, 48, 64, 6, 1));
     	animations.put("flamingo", new Animation("flamingo", spriteSheet, 24, 104, 48, 64, 11, 3));
     	animations.put("piranha", new Animation("piranha", spriteSheet, 24, 238, 48, 64, 18, 8));
+
+    	animations.put("snakepuka", new Animation("snakepuka", spriteSheet, 24, 1254, 84, 112, 11, 8));
+
     }
 
     public void playRepeat(Graphics2D graphics, String name, int direction, AnimationMovement animationMovement) {

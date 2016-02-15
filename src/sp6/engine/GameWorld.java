@@ -1,21 +1,27 @@
 package sp6.engine;
 
-import sp6.engine.controller.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
 
 /** 
- * Har loopen. Har information om hela spelets tillstånd. Hanterar levels
+ * Har loopen. Har information om hela spelets tillstï¿½nd. Hanterar levels
  *
  */
 public class GameWorld {
-    private List<BaseObject> baseObjects;
+    private Loader loader;
+    private SortedMap<Integer, List<BaseObject>> baseObjectMap;
+    private GameWindow gameWindow;
     private static boolean gameLoopRun = false;
 
 
     // @TODO Fix complete handling of levels and so on...
-    public GameWorld(List<BaseObject> baseObjects) {
-        this.baseObjects = baseObjects;
+    public GameWorld(Loader loader) {
+        this.loader = loader;
+        baseObjectMap = loader.getBaseObjectMap();
+
+        gameWindow = loader.getGameWindow();
 
         (new Thread() {
             @Override
@@ -63,14 +69,19 @@ public class GameWorld {
             }
 
             // @TODO maybe put this in a separate thread?!
-            update(Component.Prio.HIGH, deltaTime);
-
-            update(Component.Prio.MEDIUM, deltaTime);
-            update(Component.Prio.LOW, deltaTime);
+            update(deltaTime);
+            render(deltaTime);
+//            update(Component.Prio.MEDIUM, deltaTime);
+//            update(Component.Prio.LOW, deltaTime);
 
             try {
-                Thread.sleep( (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
+                long timeout = (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000;
+                if (timeout < 0) {
+                    timeout = 0;
+                }
+                Thread.sleep(timeout);
             } catch (InterruptedException ie) {
+                ie.printStackTrace();
                 // @ TODO handle exception
             }
         }
@@ -84,10 +95,29 @@ public class GameWorld {
         gameLoopRun = false;
     }
 
-    private void update(Component.Prio prio, double deltaTime) {
-        for (BaseObject baseObject : baseObjects) {
-            baseObject.update(prio, deltaTime);
+
+
+    private void update(double deltaTime) {
+        for (Map.Entry<Integer, List<BaseObject>> entry : baseObjectMap.entrySet()) {
+            List<BaseObject> baseObjects = entry.getValue();
+            for (BaseObject baseObject : baseObjects) {
+                baseObject.update(baseObjects, deltaTime);
+            }
         }
+    }
+
+    private void render(double deltaTime) {
+        gameWindow.clear();
+
+        for (Map.Entry<Integer, List<BaseObject>> entry : baseObjectMap.entrySet()) {
+            List<BaseObject> baseObjects = entry.getValue();
+            for (BaseObject baseObject : baseObjects) {
+                if (baseObject.isActive()) {
+                    baseObject.render(gameWindow, deltaTime);
+                }
+            }
+        }
+        gameWindow.draw();
     }
 
 

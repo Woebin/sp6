@@ -1,22 +1,25 @@
 package sp6.engine;
 
+import sp6.testgame.GreenBall;
+import sp6.testgame.Player;
+import sp6.testgame.Flamingo;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import sp6.engine.controller.*;
+import sp6.testgame.SpaceBackground;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.prefs.BackingStoreException;
 
 /**
  * 
- * Laddar alla resurser, info, logik etc från fil in till motorn
+ * Laddar alla resurser, info, logik etc frï¿½n fil in till motorn
  *
  */
 public class Loader {
@@ -42,8 +45,13 @@ public class Loader {
     }
 
     // @TODO only for test!
-    public List<BaseObject> getBaseObjects() {
-        return xmlParser.getBaseObjects();
+    public SortedMap<Integer, List<BaseObject>> getBaseObjectMap() {
+        return xmlParser.getBaseObjectMap();
+    }
+
+    // @TODO only for test!
+    public GameWindow getGameWindow() {
+        return xmlParser.getGameWindow();
     }
 
     // @TODO Create xsd and Verify it
@@ -89,6 +97,12 @@ public class Loader {
         private static final String RADIUS_NODE = "radius";
         private static final String TILE_MAP_NODE = "tilemap";
 
+        // @TODO test only
+        private GameWindow gameWindow;
+        public XMLParser() {
+            gameWindow = new GameWindow();
+        }
+
 
         // dummy for now
         public void parseGameData() {
@@ -120,16 +134,65 @@ public class Loader {
         }
 
         // @TODO only test!
-        public List<BaseObject> getBaseObjects() {
-            List<BaseObject> baseObjects = new ArrayList<>();
-            List<Component> components = new ArrayList<>();
-            components.add(new GraphicsController());
-            components.add(new PhysicsController());
-            components.add(new InputController());
-            components.add(new CollisionController());
+        public GameWindow getGameWindow() {
+            return gameWindow;
+        }
 
-            baseObjects.add(new GameObject(components));
-            return baseObjects;
+        private void addBaseObjectMap(SortedMap<Integer, List<BaseObject>> baseObjectMap, BaseObject baseObject) {
+            List<BaseObject> baseObjects = baseObjectMap.get(baseObject.getZOrder());
+
+            if (baseObjects == null) {
+                baseObjects = new ArrayList<>();
+            }
+            baseObjects.add(baseObject);
+            baseObjectMap.put(baseObject.getZOrder(), baseObjects);
+        }
+
+
+        // @TODO only test!
+        public SortedMap<Integer, List<BaseObject>> getBaseObjectMap() {
+            InputController inputController = new InputController();
+            gameWindow.setInputController(inputController);
+
+            SortedMap<Integer, List<BaseObject>> baseObjectMap = new TreeMap<>();
+
+//            SortedSet<BaseObject> baseObjects = new TreeSet<>();
+
+
+
+            List<Component> playerComponents = new ArrayList<>();
+            playerComponents.add(new AnimationController());
+            playerComponents.add(new AudioController());
+            playerComponents.add(new CollisionController());
+            playerComponents.add(inputController);
+            playerComponents.add(new PhysicsController());
+            Player player = new Player(playerComponents);
+            player.setName("player");
+            addBaseObjectMap(baseObjectMap, player);
+
+
+            List<Component> flamingoComponents = new ArrayList<>();
+            flamingoComponents.add(new AnimationController());
+            flamingoComponents.add(new CollisionController());
+            flamingoComponents.add(inputController);
+            Flamingo flamingo = new Flamingo(flamingoComponents);
+            flamingo.setName("flamingo");
+            addBaseObjectMap(baseObjectMap, flamingo);
+
+            List<Component> backgroundComponents = new ArrayList<>();
+            backgroundComponents.add(new AnimationController());
+            backgroundComponents.add(new CollisionController());
+            SpaceBackground spaceBackground = new SpaceBackground(backgroundComponents);
+            spaceBackground.setName("background");
+            addBaseObjectMap(baseObjectMap, spaceBackground);
+
+            List<Component> ballComponents = new ArrayList<>();
+            ballComponents.add(new AnimationController());
+            GreenBall greenBall = new GreenBall(ballComponents);
+            greenBall.setName("greenball");
+            addBaseObjectMap(baseObjectMap, greenBall);
+
+            return baseObjectMap;
         }
 
         private String getTagValue(String tag, Element element) {

@@ -1,11 +1,15 @@
 package sp6.engine.controller;
 
 import sp6.engine.BaseObject;
+import sp6.engine.GameWindow;
+
+import java.util.List;
+import java.util.SortedSet;
 
 /**
  * 
- * En tanke är att ha egenskaper i form av komponenter som pluggas in till olika objekt för att förändra deras 
- * beteende. Behöver ett objekt fysiksimulering så pluggas en fysikkomponent på den.
+ * En tanke ï¿½r att ha egenskaper i form av komponenter som pluggas in till olika objekt fï¿½r att fï¿½rï¿½ndra deras 
+ * beteende. Behï¿½ver ett objekt fysiksimulering sï¿½ pluggas en fysikkomponent pï¿½ den.
  *
  */
 public abstract class Component {
@@ -20,9 +24,7 @@ public abstract class Component {
 
     public abstract Component.Prio getPrio();
 
-    public void update(BaseObject baseObject, double deltaTime) {
-        update_(baseObject, deltaTime);
-    }
+    public abstract void update(BaseObject baseObject, List<BaseObject> baseObjects, double deltaTime);
 
-    protected abstract void update_(BaseObject baseObject, double deltaTime);
+    public abstract void render(GameWindow gameWindow, BaseObject baseObject, double deltaTime);
 }
