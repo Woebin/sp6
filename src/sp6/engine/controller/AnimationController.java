@@ -16,14 +16,19 @@ public class AnimationController extends Component {
 	private BufferedImage spriteSheet;
 	private BufferedImage spaceBackground;
 	private BufferedImage greenBall;
+	private BufferedImage boulder;
 	private HashMap<String, Animation> animations = new HashMap<>();
 	private Rectangle rectangle = new Rectangle();
 
+	/**
+	 * Constructor, currently just reads test entities.
+	 */
 	public AnimationController() {
 		try {
 			spriteSheet = ImageIO.read(new File("res/Aliens_Enemies_cropped.png"));
 			spaceBackground = ImageIO.read(new File("res/Space.tga_.jpg"));
 			greenBall = ImageIO.read(new File("res/green_ball.png"));
+			boulder = ImageIO.read(new File("res/boulder.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -32,13 +37,14 @@ public class AnimationController extends Component {
 	}
 
 	/**
-	 * Populates with test entities.
+	 * Populates with test entities. 
 	 * Animation(String name, BufferedImage bufferedImage, int xGrid, int yGrid, int width, int height, int count, int fps)
 	 */
 	private void testPopulation() {
 		animations.put("alien1", new Animation("alien1", spriteSheet, 24, 24, 48, 64, 6, 1));
 		animations.put("flamingo", new Animation("flamingo", spriteSheet, 24, 104, 48, 64, 11, 3));
 		animations.put("piranha", new Animation("piranha", spriteSheet, 24, 238, 48, 64, 18, 8));
+		animations.put("boulder", new Animation("boulder", boulder, 0, 0, 32, 32, 1, 1));
 
 		animations.put("space_background", new Animation("space_background", spaceBackground, 0, 0, 1920, 1080, 1, 1));
 		animations.put("green_ball", new Animation("green_ball", greenBall, 0, 0, 249, 176, 1, 1));
@@ -47,6 +53,7 @@ public class AnimationController extends Component {
 
 	/**
 	 * Play looping animation.
+	 * 
 	 * @param name
 	 * @param direction
 	 * @param x
@@ -99,6 +106,14 @@ public class AnimationController extends Component {
 	// }
 	// }
 
+	/**
+	 * Plays static animation, i.e. draws object without animation.
+	 * @param name
+	 * @param direction
+	 * @param x
+	 * @param y
+	 * @param idx
+	 */
 	public void playStatic(String name, int direction, int x, int y, int idx) {
 		Animation animation = animations.get(name);
 		rectangle.x = x;
@@ -184,7 +199,6 @@ public class AnimationController extends Component {
 		}
 
 		/**
-		 * 
 		 * @return appropriate image from animation cycle. I think.
 		 */
 		public BufferedImage playRepeat() {

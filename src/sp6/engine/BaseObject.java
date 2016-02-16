@@ -99,7 +99,7 @@ public abstract class BaseObject implements Comparable<BaseObject>, // Z-order
     }
 
     @Override
-    public void collisionOnCollision(BaseObject baseObject) {
+	public void collisionOnCollision(BaseObject baseObject) {
         System.out.println("baseObject.collisionOnCollision");
     }
 

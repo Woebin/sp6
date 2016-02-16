@@ -8,8 +8,11 @@ import java.awt.*;
  *
  */
 public interface CollisionControllable {
-    public Rectangle getRectangle();
-    public boolean collisionEnabled();
-    public void collisionOnCollision(BaseObject baseObject);
-    public void collisionLeaveCollision(BaseObject baseObject);
+	public Rectangle getRectangle();
+
+	public boolean collisionEnabled();
+
+	public void collisionOnCollision(BaseObject baseObject);
+
+	public void collisionLeaveCollision(BaseObject baseObject);
 }

@@ -1,21 +1,32 @@
 package sp6.engine;
 
-import sp6.testgame.GreenBall;
-import sp6.testgame.Player;
-import sp6.testgame.Flamingo;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import sp6.engine.controller.*;
-import sp6.testgame.SpaceBackground;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
-import java.util.*;
-import java.util.prefs.BackingStoreException;
+import sp6.engine.controller.AnimationController;
+import sp6.engine.controller.AudioController;
+import sp6.engine.controller.CollisionController;
+import sp6.engine.controller.Component;
+import sp6.engine.controller.InputController;
+import sp6.engine.controller.PhysicsController;
+import sp6.testgame.Boulder;
+import sp6.testgame.Flamingo;
+import sp6.testgame.GreenBall;
+import sp6.testgame.Player;
+import sp6.testgame.SpaceBackground;
 
 /**
  * Loads all resources from XML file into engine.
@@ -173,7 +184,6 @@ public class Loader {
             player.setName("player");
             addBaseObjectMap(baseObjectMap, player);
 
-
             List<Component> flamingoComponents = new ArrayList<>();
             flamingoComponents.add(new AnimationController());
             flamingoComponents.add(new CollisionController());
@@ -182,6 +192,13 @@ public class Loader {
             flamingo.setName("flamingo");
             addBaseObjectMap(baseObjectMap, flamingo);
 
+            List<Component> boulderComponents = new ArrayList<>();
+            boulderComponents.add(new AnimationController());
+            boulderComponents.add(new CollisionController());
+            Boulder boulder = new Boulder(boulderComponents);
+            boulder.setName("boulder");
+            addBaseObjectMap(baseObjectMap, boulder);
+            
             List<Component> backgroundComponents = new ArrayList<>();
             backgroundComponents.add(new AnimationController());
             backgroundComponents.add(new CollisionController());
@@ -194,7 +211,8 @@ public class Loader {
             GreenBall greenBall = new GreenBall(ballComponents);
             greenBall.setName("greenball");
             addBaseObjectMap(baseObjectMap, greenBall);
-
+            
+            
             return baseObjectMap;
         }
 
