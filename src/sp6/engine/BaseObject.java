@@ -3,6 +3,7 @@ package sp6.engine;
 import sp6.engine.controller.*;
 import sp6.engine.controller.Component;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Set;
 
@@ -15,29 +16,18 @@ import java.util.Set;
 public abstract class BaseObject implements Comparable<BaseObject>, // Z-order
                                             AnimationControllable,
                                             AudioControllable,
+                                            CollisionControllable,
                                             InputControllable,
                                             PhysicsControllable {
     private final List<Component> components;
     private String name;
-    private boolean active = false;
-    private Integer zOrder = 0;
-    private SimpleVector2D vector2D;
+    private Rectangle rectangle;
+    protected boolean active = true;
+    protected Integer zOrder = 0;
 
-
-
-    public BaseObject(int x, int y, List<Component> components) {
+    public BaseObject(List<Component> components) {
         this.components = components;
-        vector2D = new SimpleVector2D(x, y);
-    }
-
-    public void setVector2D(SimpleVector2D vector2D) {
-        if (vector2D != null) {
-            this.vector2D = vector2D;
-        }
-    }
-
-    public SimpleVector2D getVector2D() {
-        return vector2D;
+        rectangle = new Rectangle(-1, -1, 0, 0);
     }
 
     public void update(List<BaseObject> baseObjects, double deltaTime) {
@@ -52,29 +42,12 @@ public abstract class BaseObject implements Comparable<BaseObject>, // Z-order
         }
     }
 
-    public Component getComponent(Class componentClass) {
-        for (Component component : components) {
-            if (component.getClass() == componentClass) {
-                return component;
-            }
-        }
-        return null;
-    }
-
     public boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     public Integer getZOrder() {
         return zOrder;
-    }
-
-    public void setzOrder(int zOrder) {
-        this.zOrder = zOrder;
     }
 
     // @TODO test
@@ -87,6 +60,39 @@ public abstract class BaseObject implements Comparable<BaseObject>, // Z-order
     }
 
     @Override
+    public void animationUpdate(AnimationController animationController) {
+    }
+
+    @Override
+    public void animationRender(AnimationController animationController) {
+    }
+
+    @Override
+    public void inputUpdate(Set<Integer> keys) {
+
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    @Override
+    public void setAnimationRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
+    }
+
+    @Override
+    public void collisionOnCollision(BaseObject baseObject) {
+        System.out.println("baseObject.collisionOnCollision");
+    }
+
+    @Override
+    public void collisionLeaveCollision(BaseObject baseObject) {
+
+    }
+
+    @Override
     public int compareTo(BaseObject otherObject) {
         if (zOrder < otherObject.zOrder) {
             return -1;
@@ -96,31 +102,13 @@ public abstract class BaseObject implements Comparable<BaseObject>, // Z-order
         return 0;
     }
 
-
-
     @Override
-    public void animationUpdate(AnimationController animationController) {
-    }
-
-    @Override
-    public void animationRender(AnimationController animationController) {
+    public boolean collisionEnabled() {
+        return false;
     }
 
 
-    @Override
-    public void inputUpdate(Set<Integer> keys) {
-    }
 
-
-    @Override
-    public void physicsEnterCollision(BaseObject baseObject) {
-        System.out.println("baseObject.collisionOnCollision");
-    }
-
-
-    @Override
-    public void physicsUpdate(PhysicsController physicsController) {
-    }
 }
 
 
