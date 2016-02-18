@@ -11,10 +11,6 @@ public class AudioController extends Component {
 
     }
 
-    @Override
-    public Prio getPrio() {
-        return prio;
-    }
 
     @Override
     public void update(BaseObject baseObject, List<BaseObject> baseObjects, double deltaTime) {

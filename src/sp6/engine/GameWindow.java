@@ -16,13 +16,12 @@ public class GameWindow extends JFrame {
 
 
     public GameWindow() {
-        setSize(640, 480);
+        setSize(1024, 768);
         setBackground(Color.black);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-//        addKeyListener(new KeyAdapterListener(this));
         getContentPane().setLayout(new FlowLayout());
         createBufferStrategy(2);
         bufferStrategy = getBufferStrategy();

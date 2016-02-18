@@ -15,7 +15,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.*;
-import java.util.prefs.BackingStoreException;
 
 /**
  * 
@@ -124,8 +123,6 @@ public class Loader {
                         Element element = (Element) node;
 
                         System.out.println(getTagValue(SPEED_NODE, element));
-//                        System.out.println(getTagValue("rule", element));
-//                        System.out.println(getTagValue("message", element));
                     }
                 }
             } catch (Exception e) {
@@ -156,39 +153,35 @@ public class Loader {
 
             SortedMap<Integer, List<BaseObject>> baseObjectMap = new TreeMap<>();
 
-//            SortedSet<BaseObject> baseObjects = new TreeSet<>();
-
-
-
             List<Component> playerComponents = new ArrayList<>();
             playerComponents.add(new AnimationController());
             playerComponents.add(new AudioController());
-            playerComponents.add(new CollisionController());
             playerComponents.add(inputController);
             playerComponents.add(new PhysicsController());
-            Player player = new Player(playerComponents);
+            Player player = new Player(100, 600, playerComponents);
             player.setName("player");
             addBaseObjectMap(baseObjectMap, player);
 
 
             List<Component> flamingoComponents = new ArrayList<>();
             flamingoComponents.add(new AnimationController());
-            flamingoComponents.add(new CollisionController());
             flamingoComponents.add(inputController);
-            Flamingo flamingo = new Flamingo(flamingoComponents);
+            flamingoComponents.add(new PhysicsController());
+            Flamingo flamingo = new Flamingo(350, 352, flamingoComponents);
             flamingo.setName("flamingo");
             addBaseObjectMap(baseObjectMap, flamingo);
 
             List<Component> backgroundComponents = new ArrayList<>();
             backgroundComponents.add(new AnimationController());
-            backgroundComponents.add(new CollisionController());
-            SpaceBackground spaceBackground = new SpaceBackground(backgroundComponents);
+            SpaceBackground spaceBackground = new SpaceBackground(0, 0, backgroundComponents);
             spaceBackground.setName("background");
             addBaseObjectMap(baseObjectMap, spaceBackground);
 
             List<Component> ballComponents = new ArrayList<>();
             ballComponents.add(new AnimationController());
-            GreenBall greenBall = new GreenBall(ballComponents);
+            ballComponents.add(new PhysicsController());
+
+            GreenBall greenBall = new GreenBall(400, 50, ballComponents);
             greenBall.setName("greenball");
             addBaseObjectMap(baseObjectMap, greenBall);
 

@@ -27,19 +27,10 @@ public class InputController extends Component implements KeyListener {
         }
 
         public int code() {
-            return keyEventKey;
+             return keyEventKey;
         }
-
-//        boolean equals(Object otherKey) {
-//            return this == otherKey;
-//        }
-
     }
 
-    @Override
-    public Prio getPrio() {
-        return prio;
-    }
 
     @Override
     public void update(BaseObject baseObject, List<BaseObject> baseObjects, double deltaTime) {

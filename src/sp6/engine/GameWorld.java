@@ -34,7 +34,7 @@ public class GameWorld {
     }
 
     // @TODO fix better game loop
- 	private void gameLoop() {
+ 	public void gameLoop() {
         // @SOURCE http://www.java-gaming.org/index.php?topic=24220.0
 
         long lastLoopTime = System.nanoTime();
@@ -71,8 +71,6 @@ public class GameWorld {
             // @TODO maybe put this in a separate thread?!
             update(deltaTime);
             render(deltaTime);
-//            update(Component.Prio.MEDIUM, deltaTime);
-//            update(Component.Prio.LOW, deltaTime);
 
             try {
                 long timeout = (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000;
@@ -99,9 +97,12 @@ public class GameWorld {
 
     private void update(double deltaTime) {
         for (Map.Entry<Integer, List<BaseObject>> entry : baseObjectMap.entrySet()) {
+            System.out.println("level: " + entry.getKey());
             List<BaseObject> baseObjects = entry.getValue();
             for (BaseObject baseObject : baseObjects) {
-                baseObject.update(baseObjects, deltaTime);
+                if (baseObject.isActive()) {
+                    baseObject.update(baseObjects, deltaTime);
+                }
             }
         }
     }

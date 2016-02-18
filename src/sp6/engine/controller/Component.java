@@ -13,18 +13,11 @@ import java.util.SortedSet;
  *
  */
 public abstract class Component {
-    // Default prio
-    protected Prio prio = Prio.LOW;
+     public void update(BaseObject baseObject, List<BaseObject> baseObjects, double deltaTime) {
 
-    public enum Prio {
-        HIGH,
-        MEDIUM,
-        LOW
     }
 
-    public abstract Component.Prio getPrio();
+    public void render(GameWindow gameWindow, BaseObject baseObject, double deltaTime) {
 
-    public abstract void update(BaseObject baseObject, List<BaseObject> baseObjects, double deltaTime);
-
-    public abstract void render(GameWindow gameWindow, BaseObject baseObject, double deltaTime);
+    }
 }
